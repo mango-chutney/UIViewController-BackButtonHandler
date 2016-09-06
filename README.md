@@ -50,10 +50,20 @@ consider subclassing the view controller which will be passed as
 import UIKit
 
 class PresentedViewControllerWrapper: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // override back bar button text (what it would say under the back butto for the next view controller on the stack)
+
+  convenience init() {
+    self.init(nibName: nil, bundle: nil)
+  }
+
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    // override back bar button text (what it would say under the back button for the next view controller on the stack)
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
   }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
 }
 ```
